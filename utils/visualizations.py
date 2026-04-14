@@ -70,14 +70,14 @@ class Visualizer:
                 title_text='Plate Separation (μm)',
                 type='log',
                 gridcolor='rgba(255,255,255,0.2)',
-                title_font=dict(color='white'),
+                # title_font=dict(color='white'),
                 tickfont=dict(color='white')
             ),
             yaxis=dict(
                 title_text='|Force| (nN)',
                 type='log',
                 gridcolor='rgba(255,255,255,0.2)',
-                title_font=dict(color='white'),
+                # title_font=dict(color='white'),
                 tickfont=dict(color='white')
             ),
             paper_bgcolor='rgba(0,0,0,0.9)',
