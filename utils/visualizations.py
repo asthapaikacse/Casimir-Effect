@@ -139,7 +139,7 @@ class Visualizer:
         # FIXED: Use proper title syntax
         fig.update_layout(
             title_text='The Infinite Sum Problem & Zeta Solution',
-            title_font=dict(size=18, color='white'),
+            # title_font=dict(size=18, color='white'),
             title_x=0.5,
             paper_bgcolor='rgba(0,0,0,0.9)',
             plot_bgcolor='rgba(0,0,0,0.8)',
@@ -220,13 +220,13 @@ class Visualizer:
         # FIXED: Use proper title syntax
         fig.update_layout(
             title_text='Riemann Zeta Function on Critical Line: ζ(0.5 + it)',
-            title_font=dict(size=18, color='white'),
+            # title_font=dict(size=18, color='white'),
             title_x=0.5,
             xaxis=dict(
                 title_text='Re(ζ)',
                 gridcolor='rgba(255,255,255,0.2)',
                 zeroline=True, zerolinecolor='white', zerolinewidth=2,
-                title_font=dict(color='white'),
+                # title_font=dict(color='white'),
                 tickfont=dict(color='white')
             ),
             yaxis=dict(
@@ -283,12 +283,15 @@ class Visualizer:
         # FIXED: Use proper title syntax
         fig.update_layout(
             title_text='|ζ(s)| over Complex Plane',
-            title_font=dict(size=18, color='white'),
+            # title_font=dict(size=18, color='white'),
             title_x=0.5,
             scene=dict(
-                xaxis=dict(title_text='Re(s)', gridcolor='gray', title_font=dict(color='white')),
-                yaxis=dict(title_text='Im(s)', gridcolor='gray', title_font=dict(color='white')),
-                zaxis=dict(title_text='|ζ(s)|', gridcolor='gray', title_font=dict(color='white')),
+                xaxis=dict(title_text='Re(s)', gridcolor='gray', 
+                           # title_font=dict(color='white')),
+                yaxis=dict(title_text='Im(s)', gridcolor='gray', 
+                           # title_font=dict(color='white')),
+                zaxis=dict(title_text='|ζ(s)|', gridcolor='gray', 
+                           # title_font=dict(color='white')),
                 bgcolor='rgba(0,0,0,0.8)'
             ),
             paper_bgcolor='rgba(0,0,0,0.9)',
@@ -337,18 +340,18 @@ class Visualizer:
         # FIXED: Use proper title syntax
         fig.update_layout(
             title_text='Domain Coloring: ζ(s) (Hue=Phase, Brightness=|ζ|)',
-            title_font=dict(size=18, color='white'),
+            # title_font=dict(size=18, color='white'),
             title_x=0.5,
             xaxis=dict(
                 title_text='Re(s)',
                 gridcolor='rgba(255,255,255,0.2)',
-                title_font=dict(color='white'),
+                # title_font=dict(color='white'),
                 tickfont=dict(color='white')
             ),
             yaxis=dict(
                 title_text='Im(s)',
                 gridcolor='rgba(255,255,255,0.2)',
-                title_font=dict(color='white'),
+                # title_font=dict(color='white'),
                 tickfont=dict(color='white'),
                 scaleanchor='x'
             ),
@@ -423,7 +426,7 @@ class Visualizer:
         # FIXED: Use proper title syntax
         fig.update_layout(
             title_text='Real and Imaginary Parts along Critical Line',
-            title_font=dict(size=18, color='white'),
+            # title_font=dict(size=18, color='white'),
             title_x=0.5,
             paper_bgcolor='rgba(0,0,0,0.9)',
             plot_bgcolor='rgba(0,0,0,0.8)',
@@ -504,7 +507,7 @@ class Visualizer:
         # FIXED: Use proper title syntax
         fig.update_layout(
             title_text='Zeta Function & Prime Number Connection',
-            title_font=dict(size=18, color='white'),
+            # title_font=dict(size=18, color='white'),
             title_x=0.5,
             paper_bgcolor='rgba(0,0,0,0.9)',
             plot_bgcolor='rgba(0,0,0,0.8)',
@@ -582,7 +585,7 @@ class Visualizer:
         # FIXED: Use proper title syntax
         fig.update_layout(
             title_text='Project Concept Flow',
-            title_font=dict(size=20, color='white'),
+            # title_font=dict(size=20, color='white'),
             title_x=0.5,
             xaxis=dict(
                 range=[-1, 1],
