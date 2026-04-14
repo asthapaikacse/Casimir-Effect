@@ -1,8 +1,3 @@
-"""
-Visualization functions for Casimir Effect and Riemann Zeta
-Using Plotly for interactive plots
-"""
-
 import numpy as np
 import plotly.graph_objects as go
 import plotly.express as px
@@ -55,7 +50,7 @@ class Visualizer:
         
         # Current plate position marker
         if plate_distance is not None:
-            current_force = np.abs(self._interpolate_force(distances, forces, plate_distance))
+            current_force = np.abs(np.interp(plate_distance, distances, np.abs(forces)))
             fig.add_trace(go.Scatter(
                 x=[plate_distance * 1e6],
                 y=[current_force * 1e9],
@@ -66,24 +61,23 @@ class Visualizer:
                 hovertemplate='Current Position<br>Distance: %{x:.3f} μm<br>Force: %{y:.4f} nN<extra></extra>'
             ))
         
+        # FIXED: Use proper title syntax
         fig.update_layout(
-            title=dict(
-                text='Casimir Force vs Plate Separation',
-                font=dict(size=20, color='white'),
-                x=0.5
-            ),
+            title_text='Casimir Force vs Plate Separation',
+            title_font=dict(size=20, color='white'),
+            title_x=0.5,
             xaxis=dict(
-                title='Plate Separation (μm)',
+                title_text='Plate Separation (μm)',
                 type='log',
                 gridcolor='rgba(255,255,255,0.2)',
-                titlefont=dict(color='white'),
+                title_font=dict(color='white'),
                 tickfont=dict(color='white')
             ),
             yaxis=dict(
-                title='|Force| (nN)',
+                title_text='|Force| (nN)',
                 type='log',
                 gridcolor='rgba(255,255,255,0.2)',
-                titlefont=dict(color='white'),
+                title_font=dict(color='white'),
                 tickfont=dict(color='white')
             ),
             paper_bgcolor='rgba(0,0,0,0.9)',
@@ -99,10 +93,6 @@ class Visualizer:
         )
         
         return fig
-    
-    def _interpolate_force(self, distances, forces, target_d):
-        """Helper for interpolation"""
-        return np.interp(target_d, distances, np.abs(forces))
     
     def create_naive_sum_plot(self, n_values, partial_sums, zeta_value):
         """
@@ -146,12 +136,11 @@ class Visualizer:
             row=1, col=2
         )
         
+        # FIXED: Use proper title syntax
         fig.update_layout(
-            title=dict(
-                text='The Infinite Sum Problem & Zeta Solution',
-                font=dict(size=18, color='white'),
-                x=0.5
-            ),
+            title_text='The Infinite Sum Problem & Zeta Solution',
+            title_font=dict(size=18, color='white'),
+            title_x=0.5,
             paper_bgcolor='rgba(0,0,0,0.9)',
             plot_bgcolor='rgba(0,0,0,0.8)',
             font=dict(color='white'),
@@ -228,24 +217,23 @@ class Visualizer:
             hovertemplate='Origin<extra></extra>'
         ))
         
+        # FIXED: Use proper title syntax
         fig.update_layout(
-            title=dict(
-                text='Riemann Zeta Function on Critical Line: ζ(0.5 + it)',
-                font=dict(size=18, color='white'),
-                x=0.5
-            ),
+            title_text='Riemann Zeta Function on Critical Line: ζ(0.5 + it)',
+            title_font=dict(size=18, color='white'),
+            title_x=0.5,
             xaxis=dict(
-                title='Re(ζ)',
+                title_text='Re(ζ)',
                 gridcolor='rgba(255,255,255,0.2)',
                 zeroline=True, zerolinecolor='white', zerolinewidth=2,
-                titlefont=dict(color='white'),
+                title_font=dict(color='white'),
                 tickfont=dict(color='white')
             ),
             yaxis=dict(
-                title='Im(ζ)',
+                title_text='Im(ζ)',
                 gridcolor='rgba(255,255,255,0.2)',
                 zeroline=True, zerolinecolor='white', zerolinewidth=2,
-                titlefont=dict(color='white'),
+                title_font=dict(color='white'),
                 tickfont=dict(color='white'),
                 scaleanchor='x', scaleratio=1
             ),
@@ -292,16 +280,15 @@ class Visualizer:
             name='Critical Line Re(s)=0.5'
         ))
         
+        # FIXED: Use proper title syntax
         fig.update_layout(
-            title=dict(
-                text='|ζ(s)| over Complex Plane',
-                font=dict(size=18, color='white'),
-                x=0.5
-            ),
+            title_text='|ζ(s)| over Complex Plane',
+            title_font=dict(size=18, color='white'),
+            title_x=0.5,
             scene=dict(
-                xaxis=dict(title='Re(s)', gridcolor='gray', titlefont=dict(color='white')),
-                yaxis=dict(title='Im(s)', gridcolor='gray', titlefont=dict(color='white')),
-                zaxis=dict(title='|ζ(s)|', gridcolor='gray', titlefont=dict(color='white')),
+                xaxis=dict(title_text='Re(s)', gridcolor='gray', title_font=dict(color='white')),
+                yaxis=dict(title_text='Im(s)', gridcolor='gray', title_font=dict(color='white')),
+                zaxis=dict(title_text='|ζ(s)|', gridcolor='gray', title_font=dict(color='white')),
                 bgcolor='rgba(0,0,0,0.8)'
             ),
             paper_bgcolor='rgba(0,0,0,0.9)',
@@ -316,8 +303,6 @@ class Visualizer:
         Domain coloring visualization of zeta function
         """
         # Create HSV color mapping
-        # Hue = phase, Saturation = 1, Value = magnitude (clipped)
-        
         from matplotlib.colors import hsv_to_rgb
         
         hue = (phase + np.pi) / (2 * np.pi)  # Normalize to [0, 1]
@@ -349,22 +334,21 @@ class Visualizer:
             opacity=0.8
         )
         
+        # FIXED: Use proper title syntax
         fig.update_layout(
-            title=dict(
-                text='Domain Coloring: ζ(s) (Hue=Phase, Brightness=|ζ|)',
-                font=dict(size=18, color='white'),
-                x=0.5
-            ),
+            title_text='Domain Coloring: ζ(s) (Hue=Phase, Brightness=|ζ|)',
+            title_font=dict(size=18, color='white'),
+            title_x=0.5,
             xaxis=dict(
-                title='Re(s)',
+                title_text='Re(s)',
                 gridcolor='rgba(255,255,255,0.2)',
-                titlefont=dict(color='white'),
+                title_font=dict(color='white'),
                 tickfont=dict(color='white')
             ),
             yaxis=dict(
-                title='Im(s)',
+                title_text='Im(s)',
                 gridcolor='rgba(255,255,255,0.2)',
-                titlefont=dict(color='white'),
+                title_font=dict(color='white'),
                 tickfont=dict(color='white'),
                 scaleanchor='x'
             ),
@@ -377,79 +361,83 @@ class Visualizer:
         return fig
     
     def create_real_imaginary_plot(self, t_values, zeta_values, zeros=None):
-
-            fig = make_subplots(
-                rows=2, cols=1,
-                shared_xaxes=True,
-                subplot_titles=('Re(ζ(0.5 + it))', 'Im(ζ(0.5 + it))'),
-                vertical_spacing=0.1
-            )
-            
-            # Real part
-            fig.add_trace(
-                go.Scatter(
-                    x=t_values,
-                    y=zeta_values.real,
-                    mode='lines',
-                    name='Re(ζ)',
-                    line=dict(color=self.color_scheme['primary'], width=2),
-                    fill='tozeroy',
-                    fillcolor='rgba(99, 110, 250, 0.2)'
-                ),
-                row=1, col=1
-            )
-            
-            # Imaginary part
-            fig.add_trace(
-                go.Scatter(
-                    x=t_values,
-                    y=zeta_values.imag,
-                    mode='lines',
-                    name='Im(ζ)',
-                    line=dict(color=self.color_scheme['secondary'], width=2),
-                    fill='tozeroy',
-                    fillcolor='rgba(239, 85, 59, 0.2)'
-                ),
-                row=2, col=1
-            )
-            
-            # Mark zeros - FIXED: Use loop instead of row='all'
-            if zeros is not None:
-                for zero in zeros:
-                    if zero <= t_values[-1]:
-                        # Add vline for row 1
-                        fig.add_vline(
-                            x=zero, line_dash="dash", line_color=self.color_scheme['zero'],
-                            opacity=0.7, row=1, col=1
-                        )
-                        # Add vline for row 2
-                        fig.add_vline(
-                            x=zero, line_dash="dash", line_color=self.color_scheme['zero'],
-                            opacity=0.7, row=2, col=1
-                        )
-            
-            # Zero lines
-            fig.add_hline(y=0, line_dash="dash", line_color="white",opacity=0.5, row=1, col=1)
-            fig.add_hline(y=0, line_dash="dash", line_color="white",opacity=0.5, row=2, col=1)
-            
-            fig.update_layout(
-                title=dict(
-                    text='Real and Imaginary Parts along Critical Line',
-                    font=dict(size=18, color='white'),
-                    x=0.5
-                ),
-                paper_bgcolor='rgba(0,0,0,0.9)',
-                plot_bgcolor='rgba(0,0,0,0.8)',
-                font=dict(color='white'),
-                showlegend=False,
-                height=700
-            )
-            
-            fig.update_xaxes(title_text='t (Im(s))', gridcolor='rgba(255,255,255,0.2)', row=2, col=1)
-            fig.update_yaxes(gridcolor='rgba(255,255,255,0.2)', row=1, col=1)
-            fig.update_yaxes(gridcolor='rgba(255,255,255,0.2)', row=2, col=1)
-            
-            return fig
+        """
+        Separate plots for real and imaginary parts along critical line
+        """
+        fig = make_subplots(
+            rows=2, cols=1,
+            shared_xaxes=True,
+            subplot_titles=('Re(ζ(0.5 + it))', 'Im(ζ(0.5 + it))'),
+            vertical_spacing=0.1
+        )
+        
+        # Real part
+        fig.add_trace(
+            go.Scatter(
+                x=t_values,
+                y=zeta_values.real,
+                mode='lines',
+                name='Re(ζ)',
+                line=dict(color=self.color_scheme['primary'], width=2),
+                fill='tozeroy',
+                fillcolor='rgba(99, 110, 250, 0.2)'
+            ),
+            row=1, col=1
+        )
+        
+        # Imaginary part
+        fig.add_trace(
+            go.Scatter(
+                x=t_values,
+                y=zeta_values.imag,
+                mode='lines',
+                name='Im(ζ)',
+                line=dict(color=self.color_scheme['secondary'], width=2),
+                fill='tozeroy',
+                fillcolor='rgba(239, 85, 59, 0.2)'
+            ),
+            row=2, col=1
+        )
+        
+        # Mark zeros - FIXED: Use loop instead of row='all'
+        if zeros is not None:
+            for zero in zeros:
+                if zero <= t_values[-1]:
+                    # Add vline for row 1
+                    fig.add_vline(
+                        x=zero, line_dash="dash", line_color=self.color_scheme['zero'],
+                        opacity=0.7, row=1, col=1
+                    )
+                    # Add vline for row 2
+                    fig.add_vline(
+                        x=zero, line_dash="dash", line_color=self.color_scheme['zero'],
+                        opacity=0.7, row=2, col=1
+                    )
+        
+        # Zero lines
+        fig.add_hline(y=0, line_dash="dash", line_color="white", 
+                     opacity=0.5, row=1, col=1)
+        fig.add_hline(y=0, line_dash="dash", line_color="white", 
+                     opacity=0.5, row=2, col=1)
+        
+        # FIXED: Use proper title syntax
+        fig.update_layout(
+            title_text='Real and Imaginary Parts along Critical Line',
+            title_font=dict(size=18, color='white'),
+            title_x=0.5,
+            paper_bgcolor='rgba(0,0,0,0.9)',
+            plot_bgcolor='rgba(0,0,0,0.8)',
+            font=dict(color='white'),
+            showlegend=False,
+            height=700
+        )
+        
+        fig.update_xaxes(title_text='t (Im(s))', gridcolor='rgba(255,255,255,0.2)', row=2, col=1)
+        fig.update_yaxes(gridcolor='rgba(255,255,255,0.2)', row=1, col=1)
+        fig.update_yaxes(gridcolor='rgba(255,255,255,0.2)', row=2, col=1)
+        
+        return fig
+    
     def create_prime_connection_plot(self, x_values, pi_x, li_x, primes):
         """
         Show connection between zeta zeros and prime distribution
@@ -513,12 +501,11 @@ class Visualizer:
             row=2, col=1
         )
         
+        # FIXED: Use proper title syntax
         fig.update_layout(
-            title=dict(
-                text='Zeta Function & Prime Number Connection',
-                font=dict(size=18, color='white'),
-                x=0.5
-            ),
+            title_text='Zeta Function & Prime Number Connection',
+            title_font=dict(size=18, color='white'),
+            title_x=0.5,
             paper_bgcolor='rgba(0,0,0,0.9)',
             plot_bgcolor='rgba(0,0,0,0.8)',
             font=dict(color='white'),
@@ -592,12 +579,11 @@ class Visualizer:
             bgcolor='rgba(0,0,0,0.5)'
         )
         
+        # FIXED: Use proper title syntax
         fig.update_layout(
-            title=dict(
-                text='Project Concept Flow',
-                font=dict(size=20, color='white'),
-                x=0.5
-            ),
+            title_text='Project Concept Flow',
+            title_font=dict(size=20, color='white'),
+            title_x=0.5,
             xaxis=dict(
                 range=[-1, 1],
                 showgrid=False,
